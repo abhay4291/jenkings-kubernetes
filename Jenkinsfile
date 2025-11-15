@@ -14,17 +14,22 @@ pipeline {
             }
         }
 
-        stage('Test Run') {
+        stage('Package JAR') {
             steps {
-                sh 'echo "admin" | java LoginApp || true'
+                sh 'jar cfe LoginApp.jar LoginApp LoginApp.class'
             }
         }
 
-        stage('Archive Artifacts') {
+        stage('Archive') {
             steps {
-                archiveArtifacts artifacts: '*.class', fingerprint: true
+                archiveArtifacts artifacts: '*.jar', fingerprint: true
+            }
+        }
+
+        stage('Deploy (Run JAR)') {
+            steps {
+                sh 'java -jar LoginApp.jar'
             }
         }
     }
 }
-
