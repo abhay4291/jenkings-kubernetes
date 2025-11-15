@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -28,8 +29,9 @@ pipeline {
 
         stage('Deploy (Run JAR)') {
             steps {
-                sh 'java -jar LoginApp.jar'
+                sh 'java -jar LoginApp.jar admin password123'
             }
         }
+
     }
 }
