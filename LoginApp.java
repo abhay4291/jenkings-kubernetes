@@ -1,28 +1,23 @@
-import java.util.Scanner;
-
 public class LoginApp {
 
     public static void main(String[] args) {
 
-        // Hardcoded username & password (only for demo)
         String validUsername = "admin";
         String validPassword = "password123";
 
-        Scanner scanner = new Scanner(System.in);
+        if (args.length < 2) {
+            System.out.println("Error: Provide username and password as arguments.");
+            System.out.println("Usage: java -jar LoginApp.jar <username> <password>");
+            return;
+        }
 
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
+        String username = args[0];
+        String password = args[1];
 
         if (username.equals(validUsername) && password.equals(validPassword)) {
             System.out.println("Login successful!");
         } else {
             System.out.println("Invalid username or password.");
         }
-
-        scanner.close();
     }
 }
-
